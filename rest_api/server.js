@@ -1,6 +1,9 @@
 const express = require('express')
+const bodyParser = require('body-parser')
 const app = express()
 
+app.use(bodyParser.json())
+app.use(bodyParser.urlencoded({ extended: true }))
 app.get('/', (req, res) => {
   res.send('Hello World')
 })
@@ -11,6 +14,7 @@ app.get('/books', (req, res) => {
 app.get('/books/:id', (req, res) => {
     res.json(books.find(book => book.id === req.params.id))
 })
+
 app.listen(3000, () => {
   console.log('http://localhost:3000')
 })
